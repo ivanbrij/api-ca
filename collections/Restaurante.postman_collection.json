@@ -1,0 +1,580 @@
+{
+	"info": {
+		"_postman_id": "cbf6f292-ae42-453e-94db-b7d73f8a9f6e",
+		"name": "Restaurante",
+		"description": "Documentación para el recurso Restaurante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12368222"
+	},
+	"item": [
+		{
+			"name": "Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restaurante_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición crea un nuevo Restaurante. La API retorna el nuevo restaurante con el ID asignado"
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Mirazur\",\n    \"ciudad\": \"Paris\",\n    \"estrellas\": 3,\n    \"fecha\": \"26/09/2019\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los restaurantes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of restaurants > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición obtiene todos los recursos del tipo Restaurante. La API retorna un arreglo de Restaurantes"
+			},
+			"response": [
+				{
+					"name": "Obtener todos los restaurantes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Mirazur\",\r\n        \"ciudad\": \"Paris\",\r\n        \"estrellas\": 3,\r\n        \"fecha\":\"26/09/2019\",\r\n        \"culturas gastronomicas\":[\r\n            {\r\n                \"id\": \"78a9ab90-1276-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Vietnamita\",\r\n                \"descripcion\": \"no tiene horarios de comida específicos, se come cuando se puede o da hambre.\"\r\n            },\r\n            {\r\n                \"id\": \"79a9ab90-1276-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Etiope\",\r\n                \"descripcion\": \"se come «injera» en todas las comidas; se trata de un pan muy delgado, parecido a la tortilla de harina, pero más grande.\"\r\n            },\r\n            {\r\n                \"id\": \"89a9ab90-1276-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Española\",\r\n                \"descripcion\": \"se suelen comer 12 uvas al tiempo que el reloj va dando las doce campanadas del Año Nuevo; por lo que la gente acaba con la boca llena de uvas.\"\r\n            }\r\n\r\n        ]\r\n\r\n    },\r\n\r\n    {\r\n        \"id\": \"58a9ab90-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Nuevo Noma\",\r\n        \"ciudad\": \"Copenhague\",\r\n        \"estrellas\": 2,\r\n        \"fecha\":\"24/01/2014\",\r\n        \"culturas gastronomicas\":[\r\n            {\r\n                \"id\": \"78a9ab90-1276-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Vietnamita\",\r\n                \"descripcion\": \"no tiene horarios de comida específicos, se come cuando se puede o da hambre.\"\r\n            },\r\n            {\r\n                \"id\": \"79a9ab90-1276-11ed-861d-0242ac120002\",\r\n                \"nombre\": \"Etiope\",\r\n                \"descripcion\": \"se come «injera» en todas las comidas; se trata de un pan muy delgado, parecido a la tortilla de harina, pero más grande.\"\r\n            }\r\n\r\n        ]\r\n\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición obtiene el Restaurante con el id dado. La API retorna la información de dicho Restaurante"
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\":\"26/09/2019\",\r\n    \"culturas gastronomicas\":[\r\n        {\r\n            \"id\": \"78a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Vietnamita\",\r\n            \"descripcion\": \"no tiene horarios de comida específicos, se come cuando se puede o da hambre.\"\r\n        },\r\n        {\r\n            \"id\": \"79a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Etiope\",\r\n            \"descripcion\": \"se come «injera» en todas las comidas; se trata de un pan muy delgado, parecido a la tortilla de harina, pero más grande.\"\r\n        },\r\n        {\r\n            \"id\": \"89a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Española\",\r\n            \"descripcion\": \"se suelen comer 12 uvas al tiempo que el reloj va dando las doce campanadas del Año Nuevo; por lo que la gente acaba con la boca llena de uvas.\"\r\n        }\r\n\r\n    ]\r\n\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta petición consulta un Restaurante con id inválido. La API retorna un mensaje de error"
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 4,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición actualiza el Restaurante con el id dado. La API retorna el Restaurante con la información actualizada"
+			},
+			"response": [
+				{
+					"name": "Actualizar un restaurante",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 4,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Mirazur\",\n    \"ciudad\": \"Paris\",\n    \"estrellas\": 4,\n    \"fecha\": \"26/12/2021 (nueva ultima fecha)\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 4,\r\n    \"fecha\": \"26/12/2021 (nueva ultima fecha)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta petición es para actualizar un Restaurante con id inválido. La API retorna un mensaje de error"
+			},
+			"response": [
+				{
+					"name": "Actualizar un restaurante que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 4,\r\n    \"fecha\": \"26/12/2021 (nueva ultima fecha)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición borra el Restaurante con el id indicado. La API retorna 204"
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta petición es para borrar un Restaurante con id inválido. La API retorna un mensaje de error"
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The restaurant with the given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": " http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "restaurante_id",
+			"value": "48a9ab90-1276-11ed-861d-0242ac120002",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "cultura_gastronomica_id_1",
+			"value": "89a9ab90-1276-11ed-861d-0242ac120002",
+			"type": "string"
+		},
+		{
+			"key": "cultura_gastronomica_id_2",
+			"value": "90a9ab90-1276-11ed-861d-0242ac120002",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

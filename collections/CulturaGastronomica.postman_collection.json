@@ -1,0 +1,660 @@
+{
+	"info": {
+		"_postman_id": "8d808126-8aab-49ae-84ce-3c4b02a6ae8f",
+		"name": "CulturaGastronomica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15420669"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"auth_token\", data.token);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"username\": \"admin\",\n   \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"cultura_id\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"nombre\":\"Cultura gastronómica italiana\",\n   \"descripcion\":\"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar cultura gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"nombre\": \"Cultura gastronómica italiana\",\n   \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica"
+							]
+						}
+					},
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "   { \n    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n   }"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las culturas gastronomicas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of cultures > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las culturas gastronomicas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n        \"pais\":[\n                {\n                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120003\",\n                    \"nombre\": \"Italia\",\n                    \"descripcion\": \"Pais ubicado en el sur europeo, peninsula en el mar Mediterraneo\",\n                    \"Restaurantes\":[\n                            {\n                                \"id\":\"14f05d0e-1275-11ed-861d-0242ac120004\",\n                                \"nombre\": \"Rigoletto\",\n                                \"estrellas\": 2,\n                                \"fechaObtencion\": \"1900-10-31\"\n                            }\n                        ]\n\n                }\n            ],\n        \"restaurante\": [     \n                            {\n                                \"id\":\"14f05d0e-1275-11ed-861d-0242ac120004\",\n                                \"nombre\": \"Rigoletto\",\n                                \"estrellas\": 2,\n                                \"fechaObtencion\": \"1900-10-31\"\n                            }\n                        ],\n        \"productoCulinario\":[\n                                {\n                                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120005\",\n                                    \"nombre\": \"Tomate\",\n                                    \"descripcion\": \"Veetal usado principalmente en salsas\",\n                                    \"Historia\": \"el tomate llegó en primer lugar a Sevilla, que era uno de los principales centros del comercio internacional, en particular con Italia. Precisamente fue en 1544, que el herborista italiano (Mattioli) introdujo su conocimiento en Italia (mala aurea, posteriormente, pomodoro).\",\n                                    \"categoria\":\"VEGETAL\"\n                                    \n                                }\n                                ],\n        \"recetas\":[\n                                {\n                                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120006\",\n                                    \"nombre\": \"Carpaccio\",\n                                    \"descripcion\": \"Aunque el más popular es el carpaccio de ternera, podemos hacer carpaccio con muchos otros ingredientes. Con una mandolina o un cuchillo bien afilado, podemos preparar muchas recetas sencillas, fáciles y rápidas para disfrutar sin complicarnos.\",\n                                    \"foto\":\"URL\",\n                                    \"proceso\":\"Como cunde bastante, con un medallón de solomillo tendremos bastante. Envolvemos el filete en film plástico de cocina y lo congelamos durante 1 hora y media. Así conseguimos que la carne sea más fácil de manejar para cortar bien en rodajas bien finas. Con un cortafiambres o con un cuchillo bien afilado cortamos filetitos lo más finos que podamos, distribuyéndolos en un plato. Añadimos pimienta negra, unas escamas de parmesano y unas diez o doce alcaparras. En el vaso de la batidora ponemos la albahaca, los pistachos, el queso rallado y el aceite de oliva, triturando hasta obtener una especie de pasta. Si no tenéis pistachos podéis hacer esta receta con nueces, por ejemplo. Servimos dos o tres cucharaditas de pesto sobre la carne colocada en el plato y llevamos el resto a la mesa en una salsera aparte, para que cada cual se condimente a su gusto el carpaccio\", \n                                    \"video\":\"URL\"\n                                    \n                                }\n                    ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener cultura gastronomica por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener cultura gastronomicapor id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"{{cultura_id}}"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n        \"pais\":[\n                {\n                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120003\",\n                    \"nombre\": \"Italia\",\n                    \"descripcion\": \"Pais ubicado en el sur europeo, peninsula en el mar Mediterraneo\",\n                    \"Restaurantes\":[\n                            {\n                                \"id\":\"14f05d0e-1275-11ed-861d-0242ac120004\",\n                                \"nombre\": \"Rigoletto\",\n                                \"estrellas\": 2,\n                                \"fechaObtencion\": \"1900-10-31\"\n                            }\n                        ]\n\n                }\n            ],\n        \"restaurante\": [     \n                            {\n                                \"id\":\"14f05d0e-1275-11ed-861d-0242ac120004\",\n                                \"nombre\": \"Rigoletto\",\n                                \"estrellas\": 2,\n                                \"fechaObtencion\": \"1900-10-31\"\n                            }\n                        ],\n        \"productoCulinario\":[\n                                {\n                                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120005\",\n                                    \"nombre\": \"Tomate\",\n                                    \"descripcion\": \"Veetal usado principalmente en salsas\",\n                                    \"Historia\": \"el tomate llegó en primer lugar a Sevilla, que era uno de los principales centros del comercio internacional, en particular con Italia. Precisamente fue en 1544, que el herborista italiano (Mattioli) introdujo su conocimiento en Italia (mala aurea, posteriormente, pomodoro).\",\n                                    \"categoria\":\"VEGETAL\"\n                                    \n                                }\n                                ],\n        \"recetas\":[\n                                {\n                                    \"id\":\"14f05d0e-1275-11ed-861d-0242ac120006\",\n                                    \"nombre\": \"Carpaccio\",\n                                    \"descripcion\": \"Aunque el más popular es el carpaccio de ternera, podemos hacer carpaccio con muchos otros ingredientes. Con una mandolina o un cuchillo bien afilado, podemos preparar muchas recetas sencillas, fáciles y rápidas para disfrutar sin complicarnos.\",\n                                    \"foto\":\"URL\",\n                                    \"proceso\":\"Como cunde bastante, con un medallón de solomillo tendremos bastante. Envolvemos el filete en film plástico de cocina y lo congelamos durante 1 hora y media. Así conseguimos que la carne sea más fácil de manejar para cortar bien en rodajas bien finas. Con un cortafiambres o con un cuchillo bien afilado cortamos filetitos lo más finos que podamos, distribuyéndolos en un plato. Añadimos pimienta negra, unas escamas de parmesano y unas diez o doce alcaparras. En el vaso de la batidora ponemos la albahaca, los pistachos, el queso rallado y el aceite de oliva, triturando hasta obtener una especie de pasta. Si no tenéis pistachos podéis hacer esta receta con nueces, por ejemplo. Servimos dos o tres cucharaditas de pesto sobre la carne colocada en el plato y llevamos el resto a la mesa en una salsera aparte, para que cada cual se condimente a su gusto el carpaccio\", \n                                    \"video\":\"URL\"\n                                    \n                                }\n                    ]\n    }"
+				}
+			]
+		},
+		{
+			"name": "Obtener cultura gastronomica invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id dado no se encontró\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener cultura gastronomica invalida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar cultura gastronomica por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   { \n    \"nombre\": \"Cultura gastronómica mediterranea\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica mediterranea, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, los paises del mediterraneo tiene nuna cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar cultura gastronomica por id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   { \n    \"nombre\": \"Cultura gastronómica mediterranea\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica mediterranea, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, los paises del mediterraneo tiene nuna cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n    \n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"{{cultura_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "  { \"id\":\"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica mediterranea\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n   }"
+				}
+			]
+		},
+		{
+			"name": "Actualizar cultura gastronomica por id invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id dado no se encontró\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   { \n    \"nombre\": \"Cultura gastronómica mediterranea\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica mediterranea, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, los paises del mediterraneo tiene nuna cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar cultura gastronomica por id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   { \n    \"nombre\": \"Cultura gastronómica mediterranea\"\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"{{cultura_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar cultura gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/{{cultura_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"{{cultura_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar cultura gastronomica id invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"La cultura gastronomica con id dado no se encontró\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar cultura gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"The given id was not found\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": " http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "cultura_id",
+			"value": "14f05d0e-1275-11ed-861d-0242ac120002",
+			"disabled": true
+		},
+		{
+			"key": "pais_id",
+			"value": "14f05d0e-1275-11ed-861d-0242ac120003"
+		},
+		{
+			"key": "restaurante_id",
+			"value": "14f05d0e-1275-11ed-861d-0242ac120004"
+		},
+		{
+			"key": "producto_id",
+			"value": "14f05d0e-1275-11ed-861d-0242ac120005"
+		},
+		{
+			"key": "receta_id",
+			"value": "14f05d0e-1275-11ed-861d-0242ac120006",
+			"disabled": true
+		},
+		{
+			"key": "auth_token",
+			"value": "--",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

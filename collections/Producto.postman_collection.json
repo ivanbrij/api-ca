@@ -1,0 +1,647 @@
+{
+	"info": {
+		"_postman_id": "b2925e10-d18d-45e0-b248-a048c4641d07",
+		"name": "Producto Coll",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5957463"
+	},
+	"item": [
+		{
+			"name": "Agregar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"pais_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Colombia\",\r\n    \"descripcion\":\"Colombia\",\r\n    \"historia\": \"Producto casero\",\r\n    \"categoria\": \"VEGETAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						""
+					]
+				},
+				"description": "Esta petición agrega un nuevo recurso país. El API retorna el nuevo pais con el id asignado"
+			},
+			"response": [
+				{
+					"name": "Agregar un país",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Colombia\",\r\n    \"descripcion\":\"Colombia es un país del extremo norte de Sudamérica. Su paisaje cuenta con bosques tropicales, las montañas de los Andes y varias plantaciones de café. En Bogotá, su capital a gran altura, el distrito Zona Rosa es famoso por sus restaurantes y tiendas. Cartagena, en la costa del Caribe, tiene una Ciudad Antigua colonial amurallada, un castillo del siglo XVI y arrecifes de coral cercanos.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/paises",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"28a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Colombia\",\n    \"descripcion\": \"Colombia es un país del extremo norte de Sudamérica. Su paisaje cuenta con bosques tropicales, las montañas de los Andes y varias plantaciones de café. En Bogotá, su capital a gran altura, el distrito Zona Rosa es famoso por sus restaurantes y tiendas. Cartagena, en la costa del Caribe, tiene una Ciudad Antigua colonial amurallada, un castillo del siglo XVI y arrecifes de coral cercanos.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of paises > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto"
+					]
+				},
+				"description": "StartFragment\n\nEsta petición obtiene todos los recursos del tipo Pais. La API retorna un arreglo de paises\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Obtener todos los países",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/paises",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n    {\r\n    \"id\": \"28a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Colombia\",\r\n    \"descripcion\": \"Colombia es un país del extremo norte de Sudamérica. Su paisaje cuenta con bosques tropicales, las montañas de los Andes y varias plantaciones de café. En Bogotá, su capital a gran altura, el distrito Zona Rosa es famoso por sus restaurantes y tiendas. Cartagena, en la costa del Caribe, tiene una Ciudad Antigua colonial amurallada, un castillo del siglo XVI y arrecifes de coral cercanos.\",\r\n    \"restaurantes\":[\r\n        {\r\n            \"id\": \"49a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Fusionario\",\r\n            \"ciudad\": \"Duitama\",\r\n            \"estrellas\": 0,\r\n            \"fecha\": \"na\"\r\n        }\r\n    ],\r\n    \"culturas gastronomicas\":[\r\n        {\r\n            \"id\":\"89a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\":\"Española\",\r\n            \"descripcion\": \"se suelen comer 12 uvas al tiempo que el reloj va dando las doce campanadas del Año Nuevo; por lo que la gente acaba con la boca llena de uvas.\"\r\n        }\r\n    ]\r\n    },\r\n    {\r\n    \"id\": \"29a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Francia\",\r\n    \"descripcion\": \"Francia, en Europa Occidental, abarca ciudades medievales, villas alpinas y playas mediterráneas. París, su capital, es famosa por sus firmas de alta costura, los museos de arte clásico, como el Louvre, y monumentos como la Torre Eiffel. El país también es reconocido por sus vinos y su gastronomía sofisticada. Los dibujos de la antigua cueva de Lascaux, el teatro romano de Lyon y el imponente Palacio de Versalles dan fe de su rica historia..\",\r\n    \"restaurantes\":[\r\n        {\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Mirazur\",\r\n            \"ciudad\": \"Paris\",\r\n            \"estrellas\": 3,\r\n            \"fecha\": \"26/09/2019\"\r\n        }\r\n    ],\r\n    \"culturas gastronomicas\":[\r\n        {\r\n            \"id\":\"89a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\":\"Española\",\r\n            \"descripcion\": \"se suelen comer 12 uvas al tiempo que el reloj va dando las doce campanadas del Año Nuevo; por lo que la gente acaba con la boca llena de uvas.\"\r\n        }\r\n    ]\r\n    }\r\n\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/?id=d0cfdc1e-8808-4d5f-b335-837e736728b9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "d0cfdc1e-8808-4d5f-b335-837e736728b9"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta petición obtiene el pais con el id dado. La API retorna la información de dicho pais\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Obtener un país",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/paises/{{pais_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"{{pais_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"29a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Francia\",\r\n    \"descripcion\": \"Francia, en Europa Occidental, abarca ciudades medievales, villas alpinas y playas mediterráneas. París, su capital, es famosa por sus firmas de alta costura, los museos de arte clásico, como el Louvre, y monumentos como la Torre Eiffel. El país también es reconocido por sus vinos y su gastronomía sofisticada. Los dibujos de la antigua cueva de Lascaux, el teatro romano de Lyon y el imponente Palacio de Versalles dan fe de su rica historia..\",\r\n    \"restaurantes\":[\r\n        {\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\": \"Mirazur\",\r\n            \"ciudad\": \"Paris\",\r\n            \"estrellas\": 3,\r\n            \"fecha\": \"26/09/2019\"\r\n        }\r\n    ],\r\n    \"culturas gastronomicas\":[\r\n        {\r\n            \"id\":\"89a9ab90-1276-11ed-861d-0242ac120002\",\r\n            \"nombre\":\"Española\",\r\n            \"descripcion\": \"se suelen comer 12 uvas al tiempo que el reloj va dando las doce campanadas del Año Nuevo; por lo que la gente acaba con la boca llena de uvas.\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The pais with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/productoId/?id=aaaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						"productoId",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "aaaa"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta petición consulta un paiscon id invalido. La API retorna un mensaje de error\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Obtener un país que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The country with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Colombia\",\r\n    \"descripcion\":\"Colombia es un país del extremo norte de Sudamérica. Su paisaje cuenta con bosques tropicales, las montañas de los Andes y varias plantaciones de café. En Bogotá, su capital a gran altura, el distrito Zona Rosa es famoso por sus restaurantes y tiendas. Cartagena, en la costa del Caribe, tiene una Ciudad Antigua colonial amurallada, un castillo del siglo XVI y arrecifes de coral cercanos.\",\r\n    \"historia\": \"Producto caseros\",\r\n    \"categoria\": \"VEGETAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/add/?id=4c94ad3a-b20e-4a28-9c31-42c9c45f7431",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						"add",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4c94ad3a-b20e-4a28-9c31-42c9c45f7431"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta peticion actualiza un pais. La API retorna el pais con la información actualizada\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Actualizar un país",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Colombia\",\r\n    \"descripcion\":\"Colombia es un país del extremo norte de Sudamérica.(Nueva descripcion)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/paises/{{pais_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"{{pais_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"28a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Colombia\",\r\n    \"descripcion\": \"Colombia es un país del extremo norte de Sudamérica.(Nueva descripcion)\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un producto que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The pais with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"ASASA\",\r\n    \"nombre\":\"AAA\",\r\n    \"descripcion\":\"AAAA es un país del extremo norte de Sudamérica. Su paisaje cuenta con bosques tropicales, las montañas de los Andes y varias plantaciones de café. En Bogotá, su capital a gran altura, el AA Zona Rosa es famoso por sus restaurantes y tiendas. Cartagena, en la costa del Caribe, tiene una Ciudad Antigua colonial amurallada, un castillo del siglo XVI y arrecifes de coral cercanos.\",\r\n    \"historia\": \"Producto AA\",\r\n    \"categoria\": \"VEGETAL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/add/?id=ASAS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						"add",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ASAS"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta petición es para actualizar un pais con id invalido. La API retorna un mensaje de error\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Actualizar un país que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Colombia\",\r\n    \"descripcion\":\"Colombia es un país del extremo norte de Sudamérica.(Nueva descripcion)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The country with the given id was not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/delete/?id=a756d57c-ff88-43df-83c2-54cfe44d30d9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						"delete",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "a756d57c-ff88-43df-83c2-54cfe44d30d9"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta peticion borra un pais. La API retorna 204\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Borrar un país",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/paises/{{pais_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"{{pais_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar un producto que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The pais with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/producto/delete/?id=aaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"producto",
+						"delete",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "aaa"
+						}
+					]
+				},
+				"description": "StartFragment\n\nEsta peticion trata de borrar un pais con id invalido. La API retorna un mensaje de error\n\nEndFragment"
+			},
+			"response": [
+				{
+					"name": "Borrar un país que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/paises/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"paises",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"The country with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}

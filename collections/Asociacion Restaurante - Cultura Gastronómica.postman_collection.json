@@ -1,0 +1,951 @@
+{
+	"info": {
+		"_postman_id": "c8a0d8b9-903d-4aca-bb4e-f800122166fd",
+		"name": "Asociacion Restaurante - Cultura Gastronómica",
+		"description": "Documentación para la asociación entre restaurante y culturas gastronómicas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12368222"
+	},
+	"item": [
+		{
+			"name": "Agregar Cultura Gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"cultura_gastronomica_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\":\"Cultura gastronómica italiana\",\r\n   \"descripcion\":\"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturagastronomica",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturagastronomica"
+					]
+				},
+				"description": "Esta petición crea una cultura gastronómica. El API responde la representación de la cultura"
+			},
+			"response": [
+				{
+					"name": "Agregar Cultura Gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\":\"Cultura gastronómica italiana\",\r\n   \"descripcion\":\"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturagastronomica",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturagastronomica"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cultura gastronómica italiana\",\n    \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restaurante_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Funsua\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición crea un nuevo Restaurante. La API retorna el nuevo restaurante con el ID asignado"
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Funsua\",\r\n    \"ciudad\": \"Bogota\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Mirazur\",\n    \"ciudad\": \"Paris\",\n    \"estrellas\": 3,\n    \"fecha\": \"26/09/2019\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restaurante_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición crea un nuevo Restaurante. La API retorna el nuevo restaurante con el ID asignado"
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Mirazur\",\n    \"ciudad\": \"Paris\",\n    \"estrellas\": 3,\n    \"fecha\": \"26/09/2019\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restaurante_id_3\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición crea un nuevo Restaurante. La API retorna el nuevo restaurante con el ID asignado"
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Mirazur\",\r\n    \"ciudad\": \"Paris\",\r\n    \"estrellas\": 3,\r\n    \"fecha\": \"2016-06-22 19:10:25-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Mirazur\",\n    \"ciudad\": \"Paris\",\n    \"estrellas\": 3,\n    \"fecha\": \"26/09/2019\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante a una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta peticion agrega un restaurante a una cultura gastronómica. El API responde la representacion de la cultura"
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante a una cultura gastronomica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n  \"nombre\": \"Cultura gastronómica italiana\",\n  \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n  \"restaurantes\":[\n      {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Mirazur\",\n            \"ciudad\": \"Paris\",\n            \"estrellas\": 3,\n            \"fecha\": \"26/09/2019\"\n      }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición obtiene un restaurante de una cultura gastronómica. El API responde la representación de la cultura gastronómica del id indicado"
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante de una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n  \"nombre\": \"Cultura gastronómica italiana\",\n  \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n  \"restaurantes\":[\n      {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Mirazur\",\n            \"ciudad\": \"Paris\",\n            \"estrellas\": 3,\n            \"fecha\": \"26/09/2019\"\n      }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener restaurantes de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición obtiene un restaurante de una cultura gastronómica. El API responde la representación de la cultura gastronómica del id indicado"
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante de una cultura gastronomica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n  \"nombre\": \"Cultura gastronómica italiana\",\n  \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n  \"restaurantes\":[\n      {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Mirazur\",\n            \"ciudad\": \"Paris\",\n            \"estrellas\": 3,\n            \"fecha\": \"26/09/2019\"\n      }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un restaurante de una cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"{{restaurante_id}}"
+					]
+				},
+				"description": "Esta petición elimina el restaurante con el id dado de la cultura gastronómica con el id dado. El API responde el codigo 204 no content"
+			},
+			"response": [
+				{
+					"name": "Borrar un restaurante de una cultura gastronomica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"{{restaurante_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de restaurantes de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"{{restaurante_id_2}}\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición actualiza la lista de los restaurantes de la cultura gastronómica con el id dado. El API responde la representación detallada de la cultura gastronómica mostrando la lista de restaurantes"
+			},
+			"response": [
+				{
+					"name": "Actualizar la lista de restaurantes de una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{cultura_gastronomica_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"id\": \"14f05d0e-1275-11ed-861d-0242ac120002\",\n  \"nombre\": \"Cultura gastronómica italiana\",\n  \"descripcion\": \"Si tratamos de imaginarnos la cultura gastronímica italiana, la mayoría de la gente va a pensar en pasta o pizza, espagueti o salchichas. Pero como la mayoría de las tierras antiguas y con una larga historia, Italia tiene una cocina muy variada. Las variaciones regionales no se aprecian en ninguna parte de una forma tan brusca como la diferencia que existe entre la cocina del norte y la cocina del sur de Italia.\",\n  \"restaurantes\":[\n      {\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Mirazur\",\n            \"ciudad\": \"Paris\",\n            \"estrellas\": 3,\n            \"fecha\": \"26/09/2019\"\n      }\n      {\n            \"id\": \"13a9ab90-1276-11ed-861d-0242ac120002\",\n            \"nombre\": \"Funsua\",\n            \"ciudad\": \"Bogota\",\n            \"estrellas\": 3,\n            \"fecha\": \"26/09/2019\"\n      }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un restaurante que no existe a una cultura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta petición intenta agregar un restaurante con id inválido a una cultura. El API responde con el codigo 404."
+			},
+			"response": [
+				{
+					"name": "Agregar un restaurante que no existe a una cultura",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"El restaurante con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante que no existe de una cultura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Esta petición intenta obtener un restaurante con id inválido a una cultura. El API responde con el codigo 404."
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante que no existe de una cultura",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El restaurante con el id dado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un restaurante que no esta asociado a una cultura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no esta asociado a la cultura gastronomica\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id_3}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes",
+						"{{restaurante_id_3}}"
+					]
+				},
+				"description": "Esta petición intenta obtener un restaurante cuyo id no está asociado a la cultura gastronomica con el id dado. El API responde con el codigo 404"
+			},
+			"response": [
+				{
+					"name": "Obtener un restaurante que no esta asociado a una cultura",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes/{{restaurante_id_3}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes",
+								"{{restaurante_id_3}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El restaurante con el id dado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar restaurantes invalidos en cultura gastronomica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El restaurante con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas",
+						"{{cultura_gastronomica_id_1}}",
+						"restaurantes"
+					]
+				},
+				"description": "Esta petición intenta actualizar la lista de restaurantes en una cultura gastronomica con un id de restaurante invalido. El API responde con el codigo 404."
+			},
+			"response": [
+				{
+					"name": "Actualizar restaurantes invalidos en cultura gastronomica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas/{{cultura_gastronomica_id_1}}/restaurantes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas",
+								"{{cultura_gastronomica_id_1}}",
+								"restaurantes"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El restaurante con el id dado no fue encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": " http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "cultura_gastronomica_id_1",
+			"value": "fe1e89db-c56b-4dcc-a70c-a53d2b269327",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "restaurante_id_2",
+			"value": "134e1fe5-8a32-4684-acbc-b805c8e4d12f",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

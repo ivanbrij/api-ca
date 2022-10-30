@@ -1,0 +1,105 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RecetaEntity {
+  id: String!
+  nombre: String!
+  descripcion: String!
+  foto: String!
+  proceso: String!
+  video: String!
+  cultura: CulturaEntity!
+}
+
+type PaisEntity {
+  id: String!
+  nombre: String!
+  descripcion: String!
+  restaurantes: [RestauranteEntity!]!
+}
+
+type RestauranteEntity {
+  id: String!
+  nombre: String!
+  ciudad: String!
+  estrellas: Float!
+  fecha: DateTime!
+  pais: PaisEntity!
+  culturas: [CulturaEntity!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type CulturaEntity {
+  id: String!
+  nombre: String!
+  descripcion: String!
+  recetas: [RecetaEntity!]!
+  restaurantes: [RestauranteEntity!]!
+}
+
+type Query {
+  culturas: [CulturaEntity!]!
+  cultura(id: String!): CulturaEntity!
+  recetas: [RecetaEntity!]!
+  receta(id: String!): RecetaEntity!
+  restaurantes: [RestauranteEntity!]!
+  restaurante(id: String!): RestauranteEntity!
+  paises: [PaisEntity!]!
+  pais(id: String!): PaisEntity!
+  recetasCultura(cultura_id: String!): [RecetaEntity!]!
+  recetaCultura(cultura_id: String!, receta_id: String!): RecetaEntity!
+  restaurantesDeCultura(culturaId: String!): [RestauranteEntity!]!
+  restauranteDeCultura(culturaId: String!, restauranteId: String!): RestauranteEntity!
+  restaurantesPais(pais_id: String!): [RestauranteEntity!]!
+  restaurantePais(pais_id: String!, restaurante_id: String!): RestauranteEntity!
+}
+
+type Mutation {
+  createCultura(cultura: CulturaDto!): CulturaEntity!
+  updateCultura(id: String!, cultura: CulturaDto!): CulturaEntity!
+  deleteCultura(id: String!): String!
+  createReceta(receta: RecetaDto!): RecetaEntity!
+  deleteReceta(id: String!): String!
+  createRestaurante(restaurante: RestauranteDto!): RestauranteEntity!
+  updateRestaurante(id: String!, restaurante: RestauranteDto!): RestauranteEntity!
+  deleteRestaurante(id: String!): String!
+  createPais(pais: PaisDto!): PaisEntity!
+  updatePais(id: String!, pais: PaisDto!): PaisEntity!
+  deletePais(id: String!): String!
+  addRecetaToCultura(cultura_id: String!, receta_id: String!): CulturaEntity!
+  deleteRecetaFromCultura(cultura_id: String!, receta_id: String!): String!
+  agregarRestauranteACultura(culturaId: String!, restauranteId: String!): CulturaEntity!
+  borrarRestauranteDeCultura(culturaId: String!, restauranteId: String!): String!
+  addRestauranteToPais(pais_id: String!, restaurante_id: String!): PaisEntity!
+  deleteRestauranteFromPais(pais_id: String!, restaurante_id: String!): String!
+}
+
+input CulturaDto {
+  nombre: String!
+  descripcion: String!
+}
+
+input RecetaDto {
+  nombre: String!
+  descripcion: String!
+  foto: String!
+  proceso: String!
+  video: String!
+}
+
+input RestauranteDto {
+  nombre: String!
+  ciudad: String!
+  estrellas: Float!
+  fecha: String!
+}
+
+input PaisDto {
+  nombre: String!
+  descripcion: String!
+}
