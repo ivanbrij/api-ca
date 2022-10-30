@@ -29,11 +29,7 @@ import { ApolloDriver } from '@nestjs/apollo';
     ProductoModule,
     PaisModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
+      type: 'sqlite',
       database: 'postgres',
       entities: [
         CulturaEntity,
