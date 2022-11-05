@@ -176,4 +176,70 @@ export class PaisRestauranteService {
     pais.restaurantes = pais.restaurantes.filter((e) => e.id !== restauranteId);
     await this.paisRepository.save(pais);
   }
+
+  async associateRestaurantesPais1(
+    paisId: string,
+    restaurantes: RestauranteEntity[],
+  ): Promise<PaisEntity> {
+    const pais: PaisEntity = await this.paisRepository.findOne({
+      where: { id: paisId },
+      relations: ['restaurantes'],
+    });
+
+    if (!pais)
+      throw new BusinessLogicException(
+        'The pais with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    for (let i = 0; i < restaurantes.length; i++) {
+      const restaurante: RestauranteEntity =
+        await this.restauranteRepository.findOne({
+          where: { id: restaurantes[i].id },
+        });
+      if (!restaurante)
+        throw new BusinessLogicException(
+          'The restaurante with the given id was not found',
+          BusinessError.NOT_FOUND,
+        );
+    }
+
+    pais.restaurantes = restaurantes;
+    return await this.paisRepository.save(pais);
+  }
+
+  async deleteRestaurantePais1(paisId: string, restauranteId: string) {
+    const restaurante: RestauranteEntity =
+      await this.restauranteRepository.findOne({
+        where: { id: restauranteId },
+      });
+    if (!restaurante)
+      throw new BusinessLogicException(
+        'The restaurante with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    const pais: PaisEntity = await this.paisRepository.findOne({
+      where: { id: paisId },
+      relations: ['restaurantes'],
+    });
+    if (!pais)
+      throw new BusinessLogicException(
+        'The pais with the given id was not found',
+        BusinessError.NOT_FOUND,
+      );
+
+    const paisRestaurante: RestauranteEntity = pais.restaurantes.find(
+      (e) => e.id === restaurante.id,
+    );
+
+    if (!paisRestaurante)
+      throw new BusinessLogicException(
+        'The restaurante with the given id is not associated to the pais',
+        BusinessError.PRECONDITION_FAILED,
+      );
+
+    pais.restaurantes = pais.restaurantes.filter((e) => e.id !== restauranteId);
+    await this.paisRepository.save(pais);
+  }
 }

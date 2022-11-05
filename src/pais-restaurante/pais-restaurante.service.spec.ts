@@ -284,4 +284,31 @@ describe('PaisRestauranteService', () => {
     );
   });
 
+  it('associateRestaurantesPais1 should throw an exception for an invalid restaurante', async () => {
+    const newRestaurante: RestauranteEntity = restaurantesList[0];
+    newRestaurante.id = '0';
+
+    await expect(() =>
+      service.associateRestaurantesPais1(pais.id, [newRestaurante]),
+    ).rejects.toHaveProperty(
+      'message',
+      'The restaurante with the given id was not found',
+    );
+  });
+
+  it('deleteRestauranteToPais1 should thrown an exception for an non asocciated restaurante', async () => {
+    const newRestaurante: RestauranteEntity = await restauranteRepository.save({
+      nombre: faker.company.name(),
+      ciudad: faker.address.city(),
+      estrellas: faker.datatype.number(),
+      fecha: faker.date.birthdate(),
+    });
+
+    await expect(() =>
+      service.deleteRestaurantePais1(pais.id, newRestaurante.id),
+    ).rejects.toHaveProperty(
+      'message',
+      'The restaurante with the given id is not associated to the pais',
+    );
+  });
 });

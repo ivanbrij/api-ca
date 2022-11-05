@@ -72,16 +72,4 @@ export class PaisService {
 
     await this.paisRepository.remove(pais);
   }
-  async delete2(id: string) {
-    const pais: PaisEntity = await this.paisRepository.findOne({
-      where: { id },
-    });
-    if (!pais)
-      throw new BusinessLogicException(
-        'The pais with the given id was not found',
-        BusinessError.NOT_FOUND,
-      );
-
-    await this.paisRepository.remove(pais);
-  }
 }
