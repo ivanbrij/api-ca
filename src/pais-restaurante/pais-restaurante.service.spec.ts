@@ -284,16 +284,4 @@ describe('PaisRestauranteService', () => {
     );
   });
 
-  it('associateRestaurantesPais1 should throw an exception for an invalid restaurante', async () => {
-    const newRestaurante: RestauranteEntity = restaurantesList[0];
-    newRestaurante.id = '0';
-
-    await expect(() =>
-      service.associateRestaurantesPais1(pais.id, [newRestaurante]),
-    ).rejects.toHaveProperty(
-      'message',
-      'The restaurante with the given id was not found',
-    );
-  });
-
 });
